@@ -4,61 +4,116 @@
   <meta charset="UTF-8">
   <title>Calculon</title>
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css?family=Audiowide" rel="stylesheet">
 </head>
 <body>
   <div id="wrapper">
     <div id="calculon-box">
       <div id="title">
         <h1>CALCULON</h1>
+        <img src="download.png" alt="">
       </div>
       <div id="display-panel">
-        <div id="display">
-          <p class="p-display" ">50</p>
-          <p class="p-display" ">50</p>
-          <p class="p-display" ">50</p>
-          <p class="p-display" ">50</p>
-          <p class="p-display" ">50</p>
-          <p class="p-display" ">50</p>
-          <p class="p-display" ">50</p>
-          <p class="p-display" ">50</p>
-          <p class="p-display" ">50</p>
-          <p class="p-display" ">50</p>
-        </div>
-        <input type="text" placeholder="0" id="input">
+        <div id="display"></div>
+        <div id="input"></div>
       </div>
       <div id="operators-panel">
         <div class="operators-line">
-          <div><button class="button-style" id="button7">7</button></div>
-          <div><button class="button-style" id="button8">8</button></div>
-          <div><button class="button-style" id="button9">9</button></div>
-          <div><button class="button-style" id="button/">/</button></div>
+          <div><button class="number" id="button7" type="button">7</button></div>
+          <div><button class="number" id="button8" type="button">8</button></div>
+          <div><button class="number" id="button9" type="button">9</button></div>
+          <div><button class="operator" id="button/" type="button">/</button></div>
         </div>
         <div class="operators-line">
-          <div><button class="button-style" id="button4">4</button></div>
-          <div><button class="button-style" id="button5">5</button></div>
-          <div><button class="button-style" id="button6">6</button></div>
-          <div><button class="button-style" id="buttonx">x</button></div>
+          <div><button class="number" id="button4" type="button">4</button></div>
+          <div><button class="number" id="button5" type="button">5</button></div>
+          <div><button class="number" id="button6" type="button">6</button></div>
+          <div><button class="operator" id="buttonx" type="button">x</button></div>
         </div>
         <div class="operators-line">
-          <div><button class="button-style" id="button1">1</button></div>
-          <div><button class="button-style" id="button2">2</button></div>
-          <div><button class="button-style" id="button3">3</button></div>
-          <div><button class="button-style" id="buttondash">-</button></div>
+          <div><button class="number" id="button1" type="button">1</button></div>
+          <div><button class="number" id="button2" type="button">2</button></div>
+          <div><button class="number" id="button3" type="button">3</button></div>
+          <div><button class="operator" id="buttondash" type="button">-</button></div>
         </div>
         <div class="operators-line">
-          <div><button class="button-style" id="button0">0</button></div>
-          <div><button class="button-style" id="buttonc">C</button></div>
-          <div><button class="button-style" id="buttondot">,</button></div>
-          <div><button class="button-style" id="buttonplus">+</button></div>
+          <div><button class="number" id="button0" type="button">0</button></div>
+          <div><button class="clear" id="buttonc reset" type="button">C</button></div>
+          <div><button class="number" id="dot" type="button">.</button></div>
+          <div><button class="operator" id="buttonplus" type="button">+</button></div>
         </div>
         <div class="operators-line">
-          <div id="button-box"><button class="button-style" id="buttonequal">=</button></div>
+          <div id="button-box">
+            <button class="operator" id="buttonequal" type="button">=</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
   <script>
+    var display = document.querySelector('#display');
+    var input = document.getElementById('input')
+    var total = 0;
+    var noautofocus = document.getElementsByTagName("button");
+    var operator = "";
+    for(var i = 0; i < noautofocus.length; i++){
+      noautofocus[i].addEventListener("focus", function(){
+        this.blur();
+      });
+    }
 
+    var operators = document.querySelectorAll('.operator')
+    operators.forEach((oper) => {
+      oper.addEventListener("click", save)
+    });
+
+    var numbers = document.querySelectorAll('.number')
+    numbers.forEach((number) => {
+      number.addEventListener("click", createNumber)
+    });
+
+    var clear = document.querySelector('.clear')
+    clear.addEventListener("click", clearAll)
+
+    function createNumber(e) {
+      number = e.target.textContent;
+      input.innerText += number;
+    }
+
+    function save(e) {
+      total = operate(total,parseFloat(input.innerText),operator)
+      display.innerText = total;
+      input.innerText = "";
+      operator = e.target.textContent;
+    }
+
+    function clearAll() {
+      display.innerText = "";
+      input.innerText = "";
+      operator = "";
+      total = 0;
+    }
+
+    function operate(a , b , op){
+      switch (op) {
+        case '+':
+        c = a + b;
+        break;
+        case 'x':
+        c = a * b;
+        break;
+        case '/':
+        c = a / b;
+        break;
+        case '-':
+        c = a - b;
+        break;
+        case "":
+        c = b;
+        break;
+      }
+      return c;
+    }
   </script>
 </body>
 </html>

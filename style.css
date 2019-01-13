@@ -4,14 +4,11 @@ html {
   background-size: cover;
   margin: 0;
   padding: 0;
-} p {
-  margin: 0px;
-  padding-left: 5px;
-  background-color: white;
-} p:hover {
-  background-color: red;
 } h1 {
-  margin: 0;
+  font-family: 'Audiowide', cursive;
+  margin-top: 100px;
+  letter-spacing: 10px;
+  font-weight: 150;
 }
 
 body {
@@ -24,13 +21,19 @@ body {
   height: 100vh;
 }
 
+button {
+  height: 35px;
+  width: 65px;
+  border-radius: 3px;
+}
+
 
 #calculon-box {
-  background-color: #FAB434;
+  background-color: #F9C268;
   border: 1px solid black;
-  border-radius: 3px;
+  border-radius: 15px;
   width: 335px;
-  height: 450px;
+  height: 600px;
 }
 
 #display-panel {
@@ -39,16 +42,19 @@ body {
 }
 
 #title {
-  height: 10%;
+  height: 13%;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+} img {
+  width: 150px;
+  height: 110px;
+  border-radius: 36px;
 }
 
 #display {
   height: 65%;
-  overflow: scroll;
-  overflow-x: hidden;
 }
 
 #input {
@@ -57,20 +63,19 @@ body {
   padding: 0px;
   margin: 0px;
   border: none;
-  text-align: end;
+  background-color: white;
+  text-align: right;
+  border-radius: 10px;
 }
 
-.button-style {
-  height: 35px;
-  width: 65px;
-  border-radius: 3px;
-}
 
 #operators-panel {
   height: 60%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+} button {
+  font-family: 'Audiowide', cursive;
 }
 
 .operators-line {
